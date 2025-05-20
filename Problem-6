@@ -1,0 +1,43 @@
+class Solution {
+    public void next(int[][] matrix, int count, List<Integer> list){
+        
+        
+        for(int j=count; j<matrix[0].length-count; ++j){
+            list.add(matrix[count][j]);
+        }
+
+        if(list.size()==((matrix.length)*(matrix[0].length))){
+            return ;
+        }
+
+        for(int i=count+1; i<matrix.length-count; ++i){
+            list.add(matrix[i][matrix[0].length-count-1]);
+        }
+
+        if(list.size()==((matrix.length)*(matrix[0].length))){
+            return ;
+        }
+        for(int  j=matrix[0].length-count-2; j>=count; --j){
+            list.add(matrix[matrix.length-count-1][j]);
+        }
+
+        if(list.size()==((matrix.length)*(matrix[0].length))){
+            return ;
+        }
+        for(int i=matrix.length-count-2; i>count; --i){
+            list.add(matrix[i][count]);
+        }
+
+        if(list.size()==((matrix.length)*(matrix[0].length))){
+            return ;
+        }
+        next(matrix, count+1, list);
+    }
+
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        next(matrix, 0, list);
+        return list;
+        
+    }
+}
