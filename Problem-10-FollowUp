@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        Set<List<Integer>> ans = new HashSet<>();
+        for(int i=0; i<nums.length-3; ++i){
+            for(int j=i+1; j<nums.length-2; ++j){
+                pairs(nums, target, ans, i, j);
+            }
+        }
+        List<List<Integer>> res= new ArrayList<>();
+        for(List<Integer> list : ans){
+            res.add(list);
+        }
+        return res;
+
+    }
+
+    public void pairs(int[] nums, int target, Set<List<Integer>> set, int i, int j){
+        int right=nums.length-1;
+        int left=j+1;
+        while(left<right){
+            if((long)nums[left]+(long)nums[right]+(long)nums[i]+(long)nums[j]<(long)target){
+                ++left;
+            }
+            else if((long)nums[left]+(long)nums[right]+(long)nums[i]+(long)nums[j]>(long)target){
+                --right;
+            }
+            else{
+                List<Integer> list = new ArrayList<>();
+                list.add(nums[i]);
+                list.add(nums[j]);
+                list.add(nums[left]);
+                list.add(nums[right]);
+                set.add(list);
+                ++left;
+                --right;
+            }
+        }
+    }
+}
