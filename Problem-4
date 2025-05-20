@@ -1,0 +1,26 @@
+// I tried using recursion but I got TLE and this was not accepted. I asked ChatGPT to optimise it but still i could not solve this problem.
+
+import java.util.*;
+public class P2053C {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int n=sc.nextInt();
+            int k=sc.nextInt();
+            System.out.println(solve(1,n,k));
+        }
+    }
+    public static long solve(int l, int r, int k){
+        if(r-l+1<k){
+            return 0;
+        }
+        if((r-l+1)%2==0){
+            return solve(l, (l+r)/2, k)+solve((l+r)/2+1, r, k);
+        }
+        else{
+            return solve(l, (l+r)/2-1, k)+solve((l+r)/2+1, r, k)+(l+r)/2;
+        }
+    }
+}
+
