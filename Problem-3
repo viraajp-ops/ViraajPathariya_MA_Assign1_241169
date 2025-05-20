@@ -1,0 +1,12 @@
+public class Solution {
+    public static int NthRoot(int n, int m) {
+        int i;
+        for(i=1; (long)Math.pow(i,n)<m; ++i){}
+        if((long)Math.pow(i,n)==m){
+            return i;        
+        }
+        else{
+            return -1;
+        } 
+    }
+}
